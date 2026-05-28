@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Võ Văn Nghiệp — Mechanical Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0D1B2A; --navy-80: #1a2e42; --steel: #4A6FA5; --steel-light: #7A9BC5;
+    --gold: #C9A84C; --gold-light: #E8C97A; --off-white: #F4F1EC; --warm-white: #FAF8F4;
+    --text-dark: #0D1B2A; --text-muted: #5A6B7C; --border: rgba(13,27,42,0.12);
+    --font-display: 'DM Serif Display', Georgia, serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-body); background: var(--warm-white); color: var(--text-dark); font-size: 15px; line-height: 1.7; }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 3rem; height: 64px;
+    background: rgba(244,241,236,0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family: var(--font-display); font-size: 1.1rem; color: var(--navy); text-decoration: none; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: 13px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--navy); }
+  section { padding: 6rem 3rem; }
+  .container { max-width: 880px; margin: 0 auto; }
+  #home {
+    min-height: 100vh; display: flex; align-items: center; padding-top: 8rem;
+    background: linear-gradient(160deg, var(--warm-white) 60%, var(--off-white) 100%);
+    position: relative; overflow: hidden;
+  }
+  #home::before {
+    content: ''; position: absolute; right: -4rem; top: 50%; transform: translateY(-50%);
+    width: 420px; height: 420px; border: 80px solid var(--off-white); border-radius: 50%; opacity: 0.7;
+  }
+  #home::after {
+    content: ''; position: absolute; right: 5rem; top: 50%; transform: translateY(-50%);
+    width: 220px; height: 220px; border: 2px solid var(--border); border-radius: 50%;
+  }
+  .hero-tag { display: inline-block; font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); background: rgba(201,168,76,0.1); padding: 5px 12px; border-radius: 2px; margin-bottom: 1.5rem; }
+  .hero-name { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4rem); line-height: 1.1; color: var(--navy); margin-bottom: 0.5rem; }
+  .hero-role { font-family: var(--font-display); font-size: clamp(1.2rem, 3vw, 1.8rem); font-style: italic; color: var(--steel); margin-bottom: 1.5rem; }
+  .hero-desc { max-width: 480px; color: var(--text-muted); font-size: 15px; line-height: 1.8; margin-bottom: 2.5rem; }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background: var(--navy); color: #fff; font-size: 13px; font-weight: 500; letter-spacing: 0.05em; text-decoration: none; border-radius: 2px; transition: background 0.2s, transform 0.15s; cursor: pointer; border: none; font-family: var(--font-body); }
+  .btn-primary:hover { background: var(--navy-80); transform: translateY(-1px); }
+  .btn-secondary { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background: transparent; color: var(--navy); font-size: 13px; font-weight: 500; letter-spacing: 0.05em; text-decoration: none; border: 1px solid var(--navy); border-radius: 2px; transition: background 0.2s; cursor: pointer; font-family: var(--font-body); }
+  .btn-secondary:hover { background: rgba(13,27,42,0.05); }
+  .section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+  .section-title { font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.5rem); color: var(--navy); margin-bottom: 0.75rem; line-height: 1.2; }
+  .section-lead { color: var(--text-muted); font-size: 15px; max-width: 520px; line-height: 1.8; margin-bottom: 3rem; }
+  .divider { width: 40px; height: 2px; background: var(--gold); margin: 1rem 0 2rem; }
+  #about { background: var(--off-white); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .about-left p { color: var(--text-muted); line-height: 1.9; margin-bottom: 1rem; }
+  .skills-group { margin-bottom: 2rem; }
+  .skills-group-label { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.75rem; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-tag { font-size: 12px; padding: 5px 12px; border: 1px solid var(--border); border-radius: 2px; color: var(--navy); background: var(--warm-white); }
+  .stat-row { display: flex; gap: 2rem; margin-top: 2rem; }
+  .stat-num { font-family: var(--font-display); font-size: 2.2rem; color: var(--navy); line-height: 1; }
+  .stat-desc { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+  #blog { background: var(--warm-white); }
+  .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+  .blog-card { background: var(--warm-white); border: 1px solid var(--border); border-radius: 2px; padding: 1.75rem; cursor: pointer; transition: border-color 0.2s, transform 0.2s; text-decoration: none; display: block; }
+  .blog-card:hover { border-color: var(--steel-light); transform: translateY(-2px); }
+  .blog-cat { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; display: block; }
+  .blog-title { font-family: var(--font-display); font-size: 1.1rem; color: var(--navy); line-height: 1.3; margin-bottom: 0.75rem; }
+  .blog-excerpt { font-size: 13px; color: var(--text-muted); line-height: 1.7; margin-bottom: 1.25rem; }
+  .blog-meta { font-size: 11px; color: var(--text-muted); letter-spacing: 0.03em; display: flex; align-items: center; gap: 8px; }
+  .blog-meta span { width: 3px; height: 3px; background: var(--text-muted); border-radius: 50%; display: inline-block; }
+  #cv { background: var(--navy); color: #fff; }
+  #cv .section-title { color: #fff; }
+  #cv .section-lead { color: rgba(255,255,255,0.6); }
+  #cv .section-label { color: var(--gold-light); }
+  #cv .divider { background: var(--gold-light); }
+  .cv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+  .cv-block { margin-bottom: 2.5rem; }
+  .cv-block-title { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 1.25rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .cv-item { margin-bottom: 1.5rem; }
+  .cv-item-title { font-weight: 500; font-size: 14px; color: #fff; margin-bottom: 2px; }
+  .cv-item-sub { font-size: 12px; color: var(--steel-light); margin-bottom: 4px; }
+  .cv-item-desc { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.7; }
+  .cv-download { display: inline-flex; align-items: center; gap: 8px; margin-top: 2rem; padding: 12px 24px; border: 1px solid rgba(255,255,255,0.25); color: #fff; font-size: 13px; font-weight: 500; letter-spacing: 0.05em; text-decoration: none; border-radius: 2px; transition: background 0.2s; cursor: pointer; background: transparent; font-family: var(--font-body); }
+  .cv-download:hover { background: rgba(255,255,255,0.08); }
+  #contact { background: var(--off-white); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+  .contact-left p { color: var(--text-muted); line-height: 1.9; margin-bottom: 1.5rem; }
+  .contact-links { display: flex; flex-direction: column; gap: 0.75rem; }
+  .contact-link { display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--navy); text-decoration: none; padding: 10px 0; border-bottom: 1px solid var(--border); transition: color 0.2s; }
+  .contact-link:hover { color: var(--steel); }
+  .contact-icon { width: 32px; height: 32px; background: var(--warm-white); border: 1px solid var(--border); border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--steel); flex-shrink: 0; }
+  .form-group { margin-bottom: 1.25rem; }
+  .form-label { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 6px; }
+  .form-input, .form-textarea { width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 2px; background: var(--warm-white); font-family: var(--font-body); font-size: 14px; color: var(--text-dark); outline: none; transition: border-color 0.2s; }
+  .form-input:focus, .form-textarea:focus { border-color: var(--steel); }
+  .form-textarea { min-height: 100px; resize: vertical; }
+  footer { background: var(--navy); color: rgba(255,255,255,0.4); text-align: center; padding: 2rem 3rem; font-size: 12px; letter-spacing: 0.05em; }
+  footer strong { color: rgba(255,255,255,0.7); font-weight: 400; }
+  @media (max-width: 700px) {
+    nav { padding: 0 1.5rem; }
+    .nav-links { gap: 1rem; }
+    section { padding: 4rem 1.5rem; }
+    .about-grid, .cv-grid, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .stat-row { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#home" class="nav-logo">VVN</a>
+  <ul class="nav-links">
+    <li><a href="#about">Về tôi</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#cv">CV</a></li>
+    <li><a href="#contact">Liên hệ</a></li>
+  </ul>
+</nav>
+
+<section id="home">
+  <div class="container">
+    <div class="hero-tag">Kỹ sư cơ khí · Dầu khí</div>
+    <h1 class="hero-name">Võ Văn Nghiệp</h1>
+    <p class="hero-role">Mechanical Engineer</p>
+    <p class="hero-desc">Chuyên gia cơ khí trong lĩnh vực dầu khí với kinh nghiệm thiết kế, vận hành và bảo trì hệ thống thiết bị công nghiệp. Cam kết giải pháp kỹ thuật an toàn và hiệu quả.</p>
+    <div class="hero-ctas">
+      <a href="#cv" class="btn-primary">Xem CV →</a>
+      <a href="#contact" class="btn-secondary">Liên hệ</a>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-left">
+        <p class="section-label">Về tôi</p>
+        <h2 class="section-title">Kỹ thuật<br>đúng nghĩa</h2>
+        <div class="divider"></div>
+        <p>Tôi là kỹ sư cơ khí làm việc trong ngành dầu khí, với nền tảng vững chắc về thiết kế hệ thống đường ống, thiết bị áp suất và thiết bị cơ khí quay.</p>
+        <p>Đam mê của tôi là tối ưu hiệu suất thiết bị và đảm bảo an toàn trong môi trường vận hành khắc nghiệt ngoài khơi và trên bờ.</p>
+        <div class="stat-row">
+          <div class="stat">
+            <div class="stat-num">5+</div>
+            <div class="stat-desc">Năm kinh nghiệm</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">20+</div>
+            <div class="stat-desc">Dự án hoàn thành</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">3</div>
+            <div class="stat-desc">Chứng chỉ quốc tế</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-right">
+        <div class="skills-group">
+          <div class="skills-group-label">Kỹ thuật cơ khí</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Thiết kế đường ống</span>
+            <span class="skill-tag">Thiết bị áp suất</span>
+            <span class="skill-tag">Rotating Equipment</span>
+            <span class="skill-tag">Stress Analysis</span>
+            <span class="skill-tag">P&ID</span>
+          </div>
+        </div>
+        <div class="skills-group">
+          <div class="skills-group-label">Phần mềm</div>
+          <div class="skill-tags">
+            <span class="skill-tag">AutoCAD</span>
+            <span class="skill-tag">CAESAR II</span>
+            <span class="skill-tag">SolidWorks</span>
+            <span class="skill-tag">PDMS / E3D</span>
+            <span class="skill-tag">SAP2000</span>
+          </div>
+        </div>
+        <div class="skills-group">
+          <div class="skills-group-label">Tiêu chuẩn</div>
+          <div class="skill-tags">
+            <span class="skill-tag">ASME B31.3</span>
+            <span class="skill-tag">API 650</span>
+            <span class="skill-tag">NORSOK</span>
+            <span class="skill-tag">ISO 9001</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="blog">
+  <div class="container">
+    <p class="section-label">Blog</p>
+    <h2 class="section-title">Bài viết & kiến thức</h2>
+    <div class="divider"></div>
+    <p class="section-lead">Chia sẻ kinh nghiệm thực tế từ công trường và văn phòng kỹ thuật trong ngành dầu khí.</p>
+    <div class="blog-grid">
+      <a href="#" class="blog-card">
+        <span class="blog-cat">Đường ống</span>
+        <div class="blog-title">Phân tích ứng suất đường ống theo ASME B31.3</div>
+        <p class="blog-excerpt">Hướng dẫn thực tế về cách thực hiện stress analysis cho hệ thống đường ống công nghệ, từ mô hình hóa đến đánh giá kết quả.</p>
+        <div class="blog-meta">12 tháng 5, 2025 <span></span> 8 phút đọc</div>
+      </a>
+      <a href="#" class="blog-card">
+        <span class="blog-cat">Bảo trì</span>
+        <div class="blog-title">Chiến lược bảo trì dự phòng cho máy nén khí</div>
+        <p class="blog-excerpt">Kinh nghiệm thực tế trong việc xây dựng kế hoạch PM cho máy nén ly tâm và piston trong môi trường offshore.</p>
+        <div class="blog-meta">20 tháng 3, 2025 <span></span> 6 phút đọc</div>
+      </a>
+      <a href="#" class="blog-card">
+        <span class="blog-cat">An toàn</span>
+        <div class="blog-title">Quản lý rủi ro trong thiết kế thiết bị áp suất</div>
+        <p class="blog-excerpt">Tổng quan về phương pháp Risk-Based Inspection (RBI) và ứng dụng trong đánh giá tuổi thọ bình chứa cao áp.</p>
+        <div class="blog-meta">5 tháng 1, 2025 <span></span> 10 phút đọc</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="cv">
+  <div class="container">
+    <p class="section-label">Hồ sơ</p>
+    <h2 class="section-title">Kinh nghiệm & học vấn</h2>
+    <div class="divider"></div>
+    <div class="cv-grid">
+      <div>
+        <div class="cv-block">
+          <div class="cv-block-title">Kinh nghiệm làm việc</div>
+          <div class="cv-item">
+            <div class="cv-item-title">Kỹ sư cơ khí cấp cao</div>
+            <div class="cv-item-sub">Công ty A · 2022 – Nay</div>
+            <div class="cv-item-desc">Thiết kế và giám sát thi công hệ thống đường ống offshore, phân tích ứng suất và quản lý dự án EPC.</div>
+          </div>
+          <div class="cv-item">
+            <div class="cv-item-title">Kỹ sư cơ khí</div>
+            <div class="cv-item-sub">Công ty B · 2020 – 2022</div>
+            <div class="cv-item-desc">Bảo trì thiết bị cơ khí quay, lập kế hoạch shutdown và kiểm tra thiết bị tĩnh theo tiêu chuẩn API.</div>
+          </div>
+          <div class="cv-item">
+            <div class="cv-item-title">Kỹ sư tập sự</div>
+            <div class="cv-item-sub">Công ty C · 2019 – 2020</div>
+            <div class="cv-item-desc">Hỗ trợ nhóm thiết kế P&ID, vẽ kỹ thuật và tham gia HAZOP study cho các dự án lọc dầu.</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="cv-block">
+          <div class="cv-block-title">Học vấn</div>
+          <div class="cv-item">
+            <div class="cv-item-title">Kỹ sư Cơ khí</div>
+            <div class="cv-item-sub">Đại học Bách Khoa TP.HCM · 2015 – 2019</div>
+            <div class="cv-item-desc">Chuyên ngành Máy & Thiết bị công nghiệp. Tốt nghiệp loại giỏi.</div>
+          </div>
+        </div>
+        <div class="cv-block">
+          <div class="cv-block-title">Chứng chỉ</div>
+          <div class="cv-item">
+            <div class="cv-item-title">ASME CSWIP 3.1</div>
+            <div class="cv-item-sub">Welding Inspector · 2021</div>
+          </div>
+          <div class="cv-item">
+            <div class="cv-item-title">BOSIET / HUET</div>
+            <div class="cv-item-sub">Offshore Safety · 2020</div>
+          </div>
+          <div class="cv-item">
+            <div class="cv-item-title">API 570 Piping Inspector</div>
+            <div class="cv-item-sub">American Petroleum Institute · 2023</div>
+          </div>
+        </div>
+        <a href="cv.pdf" class="cv-download">↓ Tải CV (PDF)</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <p class="section-label">Liên hệ</p>
+    <h2 class="section-title">Kết nối với tôi</h2>
+    <div class="divider"></div>
+    <div class="contact-grid">
+      <div class="contact-left">
+        <p>Tôi luôn sẵn sàng trao đổi về các cơ hội hợp tác kỹ thuật, dự án dầu khí, hoặc đơn giản là kết nối cùng những người trong ngành.</p>
+        <div class="contact-links">
+          <a href="mailto:vovannghiep@email.com" class="contact-link">
+            <div class="contact-icon">✉</div>
+            vovannghiep@email.com
+          </a>
+          <a href="https://linkedin.com/in/vovannghiep" class="contact-link">
+            <div class="contact-icon">in</div>
+            linkedin.com/in/vovannghiep
+          </a>
+          <a href="tel:+84900000000" class="contact-link">
+            <div class="contact-icon">☏</div>
+            +84 900 000 000
+          </a>
+        </div>
+      </div>
+      <div class="contact-form">
+        <div class="form-group">
+          <label class="form-label">Họ tên</label>
+          <input type="text" class="form-input" placeholder="Nguyễn Văn A">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-input" placeholder="email@example.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Lời nhắn</label>
+          <textarea class="form-textarea" placeholder="Xin chào, tôi muốn..."></textarea>
+        </div>
+        <button class="btn-primary" style="width: 100%; justify-content: center;">Gửi lời nhắn →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <strong>Võ Văn Nghiệp</strong> · Mechanical Engineer · Dầu khí · Việt Nam
+</footer>
+
+</body>
+</html>
